@@ -4,6 +4,7 @@ const Navar = () => {
     const links=<>
          <li><Link className='focus:text-white  text-yellow-500  focus:underline  font-bold' to='/'>Home</Link></li>
          <li><Link className='text-yellow-500 font-bold focus:text-white  focus:underline' to='/ourMenu'>Our Menu</Link></li>
+         <li><Link className='text-yellow-500 font-bold focus:text-white  focus:underline' to='/order'>Order your Menu</Link></li>
     </>
     return (
         <div>
