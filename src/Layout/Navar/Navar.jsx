@@ -1,7 +1,9 @@
 import 'animate.css';
+import { Link } from 'react-router-dom';
 const Navar = () => {
     const links=<>
-     
+         <li><Link className='focus:text-white  text-yellow-500  focus:underline  font-bold' to='/'>Home</Link></li>
+         <li><Link className='text-yellow-500 font-bold focus:text-white  focus:underline' to='/ourMenu'>Our Menu</Link></li>
     </>
     return (
         <div>
@@ -12,14 +14,14 @@ const Navar = () => {
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
       </div>
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[50] p-2 shadow bg-base-100 rounded-box w-52">
-         
+         {links}
       </ul>
     </div>
     <a className=" text-xl font-semibold animate__animated animate__bounce animate__faster-800ms animate__fadeInDownBig text-white "><span className='text-green-500 font-bold text-3xl '>Restaurant</span> Boss</a>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-      
+      {links}
     </ul>
   </div>
   <div className="navbar-end">

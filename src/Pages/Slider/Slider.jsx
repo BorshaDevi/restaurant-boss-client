@@ -14,7 +14,7 @@ import img5 from '../../assets/assets/home/05.png'
 import img6 from '../../assets/assets/home/06.png'
 
 // import required modules
-import { Autoplay,Pagination,Navigation } from 'swiper/modules';
+import { Autoplay,Pagination } from 'swiper/modules';
 const Slider = () => {
     return (
         <div>
@@ -24,7 +24,7 @@ const Slider = () => {
                 disableOnInteraction: false,
               }}
               navigation={true}
-               modules={[Autoplay, Pagination, Navigation]} 
+               modules={[Autoplay, Pagination]} 
                className="mySwiper">
         <SwiperSlide><img src={img1} alt="" /></SwiperSlide>
         <SwiperSlide><img src={img2} alt="" /></SwiperSlide>
