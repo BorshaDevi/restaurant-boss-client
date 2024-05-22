@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Cover from "../../Components/Cover/Cover";
 
 import bgImg from '../../assets/assets/menu/banner3.jpg'
-import Menu from "../Home/Menu";
+
 import desserts from '../../assets/assets/menu/dessert-bg.jpeg'
 import pizza from '../../assets/assets/menu/pizza-bg.jpg'
 import salads from '../../assets/assets/menu/salad-bg.jpg'
@@ -28,20 +28,16 @@ const OurMenu = () => {
              underline={'Todays offer'}>
 
       </SectionTitle>
-      <MenuCategory items={offers}></MenuCategory>
-      <Cover img={desserts} title={'Desserts'}></Cover>
-      <MenuCategory items={dessert}></MenuCategory>
+      <MenuCategory items={offers} ></MenuCategory>
+      <Cover img={desserts} title={'desserts'}></Cover>
+      <MenuCategory items={dessert} title={'dessert'}></MenuCategory>
       <Cover img={pizza} title={'pizza'}></Cover>
-      <MenuCategory items={pizzas}></MenuCategory>
+      <MenuCategory items={pizzas} title={'pizza'}></MenuCategory>
       <Cover img={salads}title={'salads'}></Cover>
-      <MenuCategory items={salad}></MenuCategory>
+      <MenuCategory items={salad} title={'salad'} ></MenuCategory>
       <Cover img={soups} title={'soups'}></Cover>
-      <MenuCategory items={soup}></MenuCategory>
-            {/* <Menu></Menu>
-            <Menu></Menu>
-            <Menu></Menu>
-            <Menu></Menu>
-            <Menu></Menu> */}
+      <MenuCategory items={soup} title={'soup'}></MenuCategory>
+           
             
         </div>
     );
