@@ -1,11 +1,28 @@
 import 'animate.css';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Authprovider/Authprovider';
 const Navar = () => {
+  const {user,login}=useContext(AuthContext)
+  const handleLogout=()=>{
+    login()
+    .then(result=>{
+      console.log(result)
+    })
+  }
     const links=<>
          <li><Link className='focus:text-white  text-yellow-500  focus:underline  font-bold' to='/'>Home</Link></li>
          <li><Link className='text-yellow-500 font-bold focus:text-white  focus:underline' to='/ourMenu'>Our Menu</Link></li>
          <li><Link className='text-yellow-500 font-bold focus:text-white  focus:underline' to='/order/salad'>Order your Menu</Link></li>
-         <li><Link className='text-yellow-500 font-bold focus:text-white  focus:underline' to='/login'>Login</Link></li>
+         <li><Link className='text-yellow-500 font-bold focus:text-white  focus:underline' to='/secret'>Secret</Link></li>
+         
+         {
+          user?< button onClick={handleLogout} className='text-yellow-500 font-bold focus:text-white  focus:underline'>LogOut</button> :
+          <div>
+             <li><Link className='text-yellow-500 font-bold focus:text-white  focus:underline' to='/login'>Login</Link></li>
+         {/* <li><Link className='text-yellow-500 font-bold focus:text-white  focus:underline' to='/signUp'>Sing Up</Link></li> */}
+          </div>
+         }
     </>
     return (
         <div>

@@ -6,11 +6,12 @@ import Navar from "../Navar/Navar";
 const Root = () => {
     const location=useLocation()
     const noNavFoot=location.pathname.includes('login')
+    const noSign=location.pathname.includes('signUp')
     return (
         <div>
-            {noNavFoot || <Navar></Navar>}
+            {noNavFoot || noSign || <Navar></Navar>}
             <Outlet></Outlet>
-           {noNavFoot ||  <Footer></Footer>}
+           {noNavFoot || noSign || <Footer></Footer>}
         </div>
     );
 };
