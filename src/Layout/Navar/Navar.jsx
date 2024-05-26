@@ -2,8 +2,11 @@ import 'animate.css';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Authprovider/Authprovider';
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import useCarts from '../../Hook/useCarts';
 const Navar = () => {
   const {user,login}=useContext(AuthContext)
+  const [cart]=useCarts()
   const handleLogout=()=>{
     login()
     .then(result=>{
@@ -15,6 +18,15 @@ const Navar = () => {
          <li><Link className='text-yellow-500 font-bold focus:text-white  focus:underline' to='/ourMenu'>Our Menu</Link></li>
          <li><Link className='text-yellow-500 font-bold focus:text-white  focus:underline' to='/order/salad'>Order your Menu</Link></li>
          <li><Link className='text-yellow-500 font-bold focus:text-white  focus:underline' to='/secret'>Secret</Link></li>
+         
+        <li>
+          <Link to='/dashboard/cart' className="indicator">
+         
+  <button className=""><AiOutlineShoppingCart /></button>
+  <span className="indicator-item badge badge-secondary">+{cart.length}</span> 
+
+          </Link>
+        </li>
          
          {
           user?< button onClick={handleLogout} className='text-yellow-500 font-bold focus:text-white  focus:underline'>LogOut</button> :

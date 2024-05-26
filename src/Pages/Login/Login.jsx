@@ -4,8 +4,9 @@ import { loadCaptchaEnginge, LoadCanvasTemplate,  validateCaptcha } from 'react-
 import { AuthContext } from "../../Authprovider/Authprovider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 const Login = () => {
-    const {signIn}=useContext(AuthContext)
+    const {signIn , googleSignIn}=useContext(AuthContext)
 const navigate=useNavigate()
 const location=useLocation()
 let from = location.state?.from?.pathname || "/";
@@ -47,6 +48,7 @@ let from = location.state?.from?.pathname || "/";
             console.log(error)
         })
     }
+    
 
     
    
@@ -101,6 +103,8 @@ let from = location.state?.from?.pathname || "/";
           
           <input disabled={disabled} className="btn bg-blue-700" type="submit" value="Login" />
         </div>
+        <div className="divider">OR</div>
+         <SocialLogin></SocialLogin>
       </form>
       <p className="text-center p-4">Do not any account?<Link className="text-blue-500" to='/signUp'>Go to Sign up page</Link></p>
       

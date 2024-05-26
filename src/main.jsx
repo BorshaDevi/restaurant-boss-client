@@ -15,6 +15,15 @@ import Authprovider from './Authprovider/Authprovider';
 import SignUp from './Pages/Register/SignUp';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import Secreat from './Pages/Secreat/Secreat';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import Dashboard from './Layout/Dashboard/Dashboard';
+import Cart from './Pages/Dashboard/Cart/Cart';
+import ManageUser from './Layout/Dashboard/ManageUser';
+
+const queryClient = new QueryClient()
 const router = createBrowserRouter([
   {
     path: "/",
@@ -46,16 +55,34 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path:'dashboard',
+    element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    children:[
+      {
+        path:'cart',
+        element:<Cart></Cart>
+      },
+      // Admin
+      {
+        path:'manageUser',
+        element:<ManageUser></ManageUser>
+      }
+    ]
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
    <Authprovider>
+   <QueryClientProvider client={queryClient}>
    <HelmetProvider>
     <div className='max-w-screen-xl mx-auto'>
    <RouterProvider router={router} />
    </div>
     </HelmetProvider>
+    </QueryClientProvider>
+   
    </Authprovider>
   </React.StrictMode>,
 )

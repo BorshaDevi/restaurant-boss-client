@@ -4,9 +4,12 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Authprovider/Authprovider";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hook/useAxiosPublic";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 
 const SignUp = () => {
+  const axiosPublic=useAxiosPublic()
   const {createUserWith,profileUpdate}=useContext(AuthContext)
     const {
         register,
@@ -21,7 +24,13 @@ const SignUp = () => {
           const user=result.user
         profileUpdate(data.name,data.photo)
         .then(result => {
-           reset()
+          const userDe={
+            name:data.name,
+            email:data.email
+          }
+           axiosPublic.post('/user',userDe)
+           .then(res =>{
+            reset()
          Swal.fire({
           title: "Sign Up successful",
           showClass: {
@@ -39,6 +48,7 @@ const SignUp = () => {
             `
           }
         });
+           })
         })
         })
         .catch(error => {
@@ -47,18 +57,18 @@ const SignUp = () => {
 
       }
     return (
-     <div>
+     <div className="">
        <Helmet>
                 <title>Restaurant Boss | Sign Up</title>
             </Helmet>
     
-        <div className="hero min-h-screen bg-base-200">
+        <div className="hero min-h-screen bg-black">
         <div className="hero-content flex-col ">
           <div className="text-center lg:text-left">
            
             <img className="max-w-screen lg:max-w-xl" src="https://i.ibb.co/0C36RdQ/10594778-4498897.jpg" alt="" />
           </div>
-          <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-black">
             <form  onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="form-control">
                 <label className="label">
@@ -95,6 +105,7 @@ const SignUp = () => {
               <div className="form-control mt-6">
               <input  className="btn bg-blue-700" type="submit" value="Sign Up" />
               </div>
+              <SocialLogin></SocialLogin>
             </form>
             <p className="text-center p-4">Already have account?<Link className="text-blue-500" to='/login'>Go to Login page</Link></p>
           </div>
