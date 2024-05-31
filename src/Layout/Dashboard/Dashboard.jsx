@@ -1,23 +1,31 @@
 import { BsCalendar, BsCart, BsList } from "react-icons/bs";
-import {  FaEnvelope, FaHome, FaRegUser, FaUtensils } from "react-icons/fa";
+import {   FaHome, FaRegUser, FaUtensils } from "react-icons/fa";
 import { FaCarBattery } from "react-icons/fa6";
 import { VscBook, VscMenu, VscPreview } from "react-icons/vsc";
 import { NavLink, Outlet } from "react-router-dom";
 import useCarts from "../../Hook/useCarts";
 import { BiSolidContact } from "react-icons/bi";
+import useAdmin from '../../Hook/useAdmin'
+
+
+
+
 
 
 
 const Dashboard = () => {
+    
     const [cart]=useCarts()
-    const isAdmin=true
+    const [admin]=useAdmin()
+    
+    // const admin=true
     return (
         <div className="flex">
             <div className="w-64 min-h-screen bg-orange-300 p-4 ">
                <ul className="space-y-5">
 
                    {
-                      isAdmin? <>
+                      admin? <>
                     <li>
                         <NavLink to='/dashboard/adminHome' className='flex space-x-2'>
                         <FaHome />
@@ -41,7 +49,9 @@ const Dashboard = () => {
                             Manage Booking</NavLink>
                     </li>
                        <li>
-                        <NavLink to='/dashboard/manageUser' className='flex space-x-2'>
+                        <NavLink to='/dashboard/manageUser' className={({ isActive })=>
+                               isActive ? "text-white underline font-bold" : "text-orange-400"  
+                        }>
                         <FaRegUser />
                             Manage user</NavLink>
                     </li>
@@ -88,7 +98,7 @@ const Dashboard = () => {
                             Menu</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/ourMenu' className='flex space-x-2'>
+                        <NavLink to='/ourMenu' className=''>
                             <BiSolidContact></BiSolidContact>
                             Contact</NavLink>
                     </li>

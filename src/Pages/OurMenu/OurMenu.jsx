@@ -12,7 +12,7 @@ import MenuCategory from "../../Components/MenuCategory/MenuCategory";
 import useMenu from "../../Hook/useMenu";
 
 const OurMenu = () => {
-    const {menus}=useMenu()
+    const [menus]=useMenu()
     const offers=menus.filter(menu => menu.category === 'offered')
     const pizzas=menus.filter(menu => menu.category === 'pizza')
     const dessert=menus.filter(menu => menu.category === 'dessert')

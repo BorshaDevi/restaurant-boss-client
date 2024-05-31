@@ -5,8 +5,8 @@ import useMenu from "../../Hook/useMenu";
 
 
 const Menu = () => {
-    const {menus}=useMenu()
-    console.log(menus)
+    const [menus]=useMenu()
+    
     const poprofulers=menus.filter(menu => menu.category === 'popular')
 
     

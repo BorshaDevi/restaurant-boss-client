@@ -22,6 +22,9 @@ import {
 import Dashboard from './Layout/Dashboard/Dashboard';
 import Cart from './Pages/Dashboard/Cart/Cart';
 import ManageUser from './Layout/Dashboard/ManageUser';
+import AddItem from './Pages/Dashboard/AddItem/AddItem';
+import AdminRoute from './AdminRoute/AdminRoute';
+import ManageItem from './Pages/Dashboard/ManageItem/ManageItem';
 
 const queryClient = new QueryClient()
 const router = createBrowserRouter([
@@ -59,14 +62,23 @@ const router = createBrowserRouter([
     path:'dashboard',
     element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children:[
+      // user see
       {
         path:'cart',
         element:<Cart></Cart>
       },
-      // Admin
+      // Admin see
+      {
+           path:'addItem',
+           element:<AdminRoute><AddItem></AddItem></AdminRoute>
+      },
+      {
+        path:'manageItem',
+        element:<AdminRoute><ManageItem></ManageItem></AdminRoute>
+      },
       {
         path:'manageUser',
-        element:<ManageUser></ManageUser>
+        element:<AdminRoute><ManageUser></ManageUser></AdminRoute>
       }
     ]
   }

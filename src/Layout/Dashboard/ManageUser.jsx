@@ -13,9 +13,38 @@ const ManageUser = () => {
             const data=await axiosUrl.get('/users')
             return data.data
         }
+       
     })
-    const handleAdmin=id=>{
-        
+    
+
+    const handleAdmin=user=>{
+      
+
+        axiosUrl.patch(`/userAdmin/${user._id}`)
+        .then(res => {
+          console.log(res.data)
+          if(res.data.modifiedCount >0){
+            refetch()
+            Swal.fire({
+              title: `${user.name} is Admin now.`,
+              showClass: {
+                popup: `
+                  animate__animated
+                  animate__fadeInUp
+                  animate__faster
+                `
+              },
+              hideClass: {
+                popup: `
+                  animate__animated
+                  animate__fadeOutDown
+                  animate__faster
+                `
+              }
+            });
+          }
+        })
+
     }
     const handleDeleteUser=(id)=>{
         Swal.fire({
@@ -70,8 +99,10 @@ const ManageUser = () => {
             <th>{index +1}</th>
             <td>{user.name}</td>
             <td>{user.email}</td>
-            <td>Blue</td>
-            <td onClick={() => handleAdmin(user._id)} className="text-3xl bg-orange-400 text-center text-white"><FaRegUser /></td>
+            
+            {user.role==='admin'?
+            'Admin':
+              <td onClick={() => handleAdmin(user)} className="text-3xl bg-orange-400 text-center text-white"><FaRegUser /></td>}
             <td onClick={() => handleDeleteUser(user._id)} className="text-3xl"><FcDeleteDatabase /></td>
           </tr> )
       }
@@ -85,3 +116,8 @@ const ManageUser = () => {
 };
 
 export default ManageUser;
+
+
+
+
+
